@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</head>
+<body>
+<script>
+	window.onload = function(){
+		var answer = confirm("You have succeeded to register, click on 'Yes' to go to the login page");	
+		if(answer){
+			window.location = "/login.html";
+		}
+		else
+			window.location = "/register.html";
+	}
+</script>
+</body>
+</html>

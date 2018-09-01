@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</head>
+<body>
+<script>
+function onRegister(){
+	var e = document.getElementById("register_form");
+	var username = e.username.value;
+	var password = e.password.value;
+	var password_confirmation = e.password_confirmation.value;
+	if (password!=password_confirmation){
+		alert("error:confirmation password is not same as the first one");
+		return ture;
+	}
+}
+</script>
+<h2>Register</h2>
+<form id="register_form" action="http://127.0.0.1:8081/register">
+Username:<input type="text" name="username" maxlength="16">
+password:<input type="password" name="password">
+password confirmation:<input type="password" name="password_confirmation">
+<button type="submit" value="Submit" onclick="onRegister()">register</button>
+</form>
+</body>
+</html>

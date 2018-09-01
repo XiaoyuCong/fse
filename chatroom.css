@@ -1,0 +1,22 @@
+ 
+.chat-box {
+    width: 50%;
+    max-width: 720px;
+    min-width: 400px;
+    height: 80%;
+    min-height: 530px;
+    max-height: 530px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 1px 1px 15px #333333;
+}
+
+.message{
+	color:blue;
+	font-size:60px;
+}
+
+#welcome{
+	color:blue;
+}

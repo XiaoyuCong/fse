@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<link rel="stylesheet" href="chatroom.css">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="socket.io-client/dist/socket.io.js"></script>
+	<script>
+	function sendMessage(){
+		var messageToSend = {"userName":username,"myMessage":$('#inputMessage').val()};
+		$('#inputMessage').val("");
+		//console.log(messageToSend);
+		$.ajax({
+			
+			type:"POST",
+			dataType:"html",
+			url:"/sendMessage",
+			data:messageToSend,
+			success:function(result){
+                                if(result != "")
+					alert("a message has been sent");
+                                return;
+				
+			},
+			error: function(){
+				alert("something went error!");
+			}
+		});
+	
+	}
+	</script>
+	<script>
+		function getCookie(cname)
+		{
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) 
+			{
+			  var c = ca[i].trim();
+			  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+	</script>
+</head>
+<body>
+	<h2 style="color:blue">Welcome to my chatroom!!</h2>
+
+	<div id="chattingWindow" class="chat-box">
+	<p id="welcome">lalala</p>
+	</div>
+	<form  method="POST" id="messageForm"  action="##" onsubmit="return false">
+	<input type="text" name="myMessage" maxlength="100" id="inputMessage">
+	<button type="submit" onclick="sendMessage()">send</button>
+	</form>
+
+	<script>
+		var username = getCookie("userName");
+	
+		if(username == "")
+			alert("Please login!");
+		else{	
+			$("#welcome").text("welcome:"+username+"!!");
+			var socket = io();
+			socket.on("broadcast_message",function(obj){
+				var p = document.createElement("p");
+			p.innerHTML = obj.userName + " at " + obj.time + "<br>" + obj.broadcastMessage;	
+			$("#chattingWindow").append(p);
+			})
+			
+			
+		}
+	
+	</script>
+</bod
+</html>
